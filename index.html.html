@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Para Ti</title>
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      min-height: 100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background: linear-gradient(135deg, #0f172a, #1f2937, #111827);
+      padding: 20px;
+      overflow:hidden;
+    }
+
+    .card{
+      width: min(460px, 95vw);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 22px;
+      padding: 26px;
+      box-shadow: 0 20px 55px rgba(0,0,0,0.45);
+      color: white;
+      text-align:center;
+      backdrop-filter: blur(10px);
+      position: relative;
+    }
+
+    h1{
+      font-size: 1.9rem;
+      margin-bottom: 8px;
+      letter-spacing: 0.3px;
+    }
+
+    p{
+      font-size: 1.05rem;
+      line-height: 1.6;
+      opacity: 0.95;
+      margin: 10px 0 18px;
+    }
+
+    .btns{
+      display:flex;
+      gap: 12px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin-top: 6px;
+    }
+
+    button{
+      border:none;
+      padding: 12px 18px;
+      border-radius: 999px;
+      cursor:pointer;
+      font-size: 1rem;
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    .btn-1{
+      background: white;
+      color: #111827;
+      font-weight: 700;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.25);
+    }
+
+    .btn-1:hover{
+      transform: translateY(-2px);
+    }
+
+    .btn-2{
+      background: rgba(255,255,255,0.12);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.14);
+    }
+
+    .btn-2:hover{
+      transform: translateY(-2px);
+    }
+
+    .msg{
+      margin-top: 18px;
+      padding: 14px 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      display:none;
+      animation: pop 0.25s ease;
+    }
+
+    @keyframes pop{
+      from{ transform: scale(0.97); opacity: 0; }
+      to{ transform: scale(1); opacity: 1; }
+    }
+
+    .firma{
+      margin-top: 16px;
+      opacity: 0.9;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+
+    /* estrellitas */
+    .star{
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: rgba(255,255,255,0.85);
+      border-radius: 50%;
+      box-shadow: 0 0 14px rgba(255,255,255,0.6);
+      animation: float 6s linear infinite;
+      opacity: 0.9;
+    }
+
+    @keyframes float{
+      0%{ transform: translateY(0); opacity: 0; }
+      10%{ opacity: 1; }
+      100%{ transform: translateY(-120vh); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>Para la mujer que me robo el corazon ✨</h1>
+
+    <p>
+      Esto no es para incomodarte.
+      <br>
+      Solo quería dejarte en claro que todavia pierdo mi cabeza por ti
+    </p>
+
+    <div class="btns">
+      <button class="btn-1" onclick="mostrarMensaje()">Toca aquí</button>
+      <button class="btn-2" onclick="otroMensaje()">Otro</button>
+    </div>
+
+    <div class="msg" id="msg"></div>
+
+    <div class="firma">— De: (El amor de tu vida)</div>
+  </div>
+
+  <script>
+    const mensajes = [
+      "Te amo mas que a nadie en el mundo .",
+      "Yo nose que tene usted que me vuelve loco.",
+      "Cada noche antes de dormir te pienso con todo mi corazon.",
+      "Esque usted es mas linda que la propia belleza.",
+      "Ya lo sabe, que nos vamos a casar."
+    ];
+
+    function mostrarMensaje(){
+      const msg = document.getElementById("msg");
+      msg.style.display = "block";
+      msg.innerHTML = mensajes[Math.floor(Math.random() * mensajes.length)];
+      lanzarEstrellas(10);
+    }
+
+    function mensajeSecreto(){
+      const msg = document.getElementById("msg");
+      msg.style.display = "block";
+      msg.innerHTML = "Usted sabe que siempre la voy a mar donde sea que este, Te amoooooo.";
+      lanzarEstrellas(16);
+    }
+
+    function lanzarEstrellas(cantidad = 10){
+      for(let i=0; i<cantidad; i++){
+        const star = document.createElement("div");
+        star.classList.add("star");
+        star.style.left = Math.random() * 100 + "vw";
+        star.style.bottom = "-10px";
+        star.style.animationDuration = (Math.random() * 3 + 4) + "s";
+        star.style.width = (Math.random() * 5 + 3) + "px";
+        star.style.height = star.style.width;
+
+        document.body.appendChild(star);
+
+        setTimeout(() => {
+          star.remove();
+        }, 7000);
+      }
+    }
+  </script>
+
+</body>
+</html>
